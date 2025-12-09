@@ -8,27 +8,29 @@ from pyrogram import filters
 load_dotenv()
 
 # ── Core bot config ────────────────────────────────────────────────────────────
-API_ID = int(getenv("API_ID", 27798659))
-API_HASH = getenv("API_HASH", "26100c77cee02e5e34b2bbee58440f86")
+API_ID = int(getenv("API_ID"))
+API_HASH = getenv("API_HASH", "")
 BOT_TOKEN = getenv("BOT_TOKEN")
 
-OWNER_ID = int(getenv("OWNER_ID", 7044783841))
-OWNER_USERNAME = getenv("OWNER_USERNAME", "CertifiedCoder")
-BOT_USERNAME = getenv("BOT_USERNAME", "AnnieXRobot")
-BOT_NAME = getenv("BOT_NAME", "˹𝐀ɴɴɪᴇ ✘ 𝙼ᴜsɪᴄ˼ ♪")
-ASSUSERNAME = getenv("ASSUSERNAME", "musicxannie")
+OWNER_ID = int(getenv("OWNER_ID", 6337933296))
+OWNER_USERNAME = getenv("OWNER_USERNAME", "@COIHAYCOC")
+BOT_USERNAME = getenv("BOT_USERNAME", "muoimuoiamnhac_Bot")
+BOT_NAME = getenv("BOT_NAME", "Muội Muội")
+ASSUSERNAME = getenv("ASSUSERNAME", "COIHAYCOC")
 
-# ── Database & logging ─────────────────────────────────────────────────────────
+#######
+PRIVATE_BOT_MODE = getenv("PRIVATE_BOT_MODE", "True")
+# ───── Mongo & Logging ───── #
 MONGO_DB_URI = getenv("MONGO_DB_URI")
-LOGGER_ID = int(getenv("LOGGER_ID", -1002014167331))
+LOGGER_ID = int(getenv("LOGGER_ID"))
 
 # ── Limits (durations in min/sec; sizes in bytes) ──────────────────────────────
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 300))
-SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION", "1200"))
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 3000))
+SONG_DOWNLOAD_DURATION = int(getenv("SONG_DOWNLOAD_DURATION", "12000"))
 SONG_DOWNLOAD_DURATION_LIMIT = int(getenv("SONG_DOWNLOAD_DURATION_LIMIT", "1800"))
-TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", "157286400"))
-TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "1288490189"))
-PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", "30"))
+TG_AUDIO_FILESIZE_LIMIT = int(getenv("TG_AUDIO_FILESIZE_LIMIT", "157286400000"))
+TG_VIDEO_FILESIZE_LIMIT = int(getenv("TG_VIDEO_FILESIZE_LIMIT", "12884901890000"))
+PLAYLIST_FETCH_LIMIT = int(getenv("PLAYLIST_FETCH_LIMIT", "50"))
 
 # ── External APIs ──────────────────────────────────────────────────────────────
 COOKIE_URL = getenv("COOKIE_URL")  # required (paste link)
@@ -42,13 +44,15 @@ HEROKU_APP_NAME = getenv("HEROKU_APP_NAME")
 HEROKU_API_KEY = getenv("HEROKU_API_KEY")
 
 # ── Git / updates ──────────────────────────────────────────────────────────────
-UPSTREAM_REPO = getenv("UPSTREAM_REPO", "https://github.com/CertifiedCoders/AnnieXMusic")
+UPSTREAM_REPO = getenv(
+    "UPSTREAM_REPO", "https://github.com/tmq247/tram5")
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "Master")
-GIT_TOKEN = getenv("GIT_TOKEN")  # needed if repo is private
+GIT_TOKEN = getenv("GIT_TOKEN")
 
-# ── Support links ──────────────────────────────────────────────────────────────
-SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/CertifiedNetwork")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/CertifiedDiscussion")
+# ───── Support & Community ───── #
+SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/muoimuoimusicbot")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/muoimuoimusicbot")
+
 
 # ── Assistant auto-leave ───────────────────────────────────────────────────────
 AUTO_LEAVING_ASSISTANT = False
@@ -98,8 +102,8 @@ DURATION_LIMIT = time_to_seconds(f"{DURATION_LIMIT_MIN}:00")
 # ───── Bot Introduction Messages ───── #
 AYU = ["💞", "🦋", "🔍", "🧪", "⚡️", "🔥", "🎩", "🌈", "🍷", "🥂", "🥃", "🕊️", "🪄", "💌", "🧨"]
 AYUV = [
-    "ʜᴇʟʟᴏ {0}, 🥀\n\n ɪᴛ'ꜱ ᴍᴇ {1} !\n\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ◆ ꜱᴜᴘᴘᴏʀᴛɪɴɢ ᴘʟᴀᴛꜰᴏʀᴍꜱ : ʏᴏᴜᴛᴜʙᴇ, ꜱᴘᴏᴛɪꜰʏ,\n┠ ◆ ʀᴇꜱꜱᴏ, ᴀᴘᴘʟᴇᴍᴜꜱɪᴄ , ꜱᴏᴜɴᴅᴄʟᴏᴜᴅ ᴇᴛᴄ.\n┗━━━━━━━━━━━━━━━━━⧫\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ➥ Uᴘᴛɪᴍᴇ : {2}\n┠ ➥ SᴇʀᴠᴇʀSᴛᴏʀᴀɢᴇ : {3}\n┠ ➥ CPU Lᴏᴀᴅ : {4}\n┠ ➥ RAM Cᴏɴsᴜᴘᴛɪᴏɴ : {5}\n┠ ➥ ᴜꜱᴇʀꜱ : {6}\n┠ ➥ ᴄʜᴀᴛꜱ : {7}\n┗━━━━━━━━━━━━━━━━━⧫\n\n🫧 ᴅᴇᴠᴇʟᴏᴩᴇʀ 🪽 ➪ [ᴄᴇʀᴛɪғɪᴇᴅ ᴄᴏᴅᴇʀ ✔︎](https://t.me/CertifiedCoder)",
-    "ʜɪɪ, {0} ~\n\n◆ ɪ'ᴍ ᴀ {1} ᴛᴇʟᴇɢʀᴀᴍ ꜱᴛʀᴇᴀᴍɪɴɢ ʙᴏᴛ ᴡɪᴛʜ ꜱᴏᴍᴇ ᴜꜱᴇꜰᴜʟ\n◆ ᴜʟᴛʀᴀ ғᴀsᴛ ᴠᴄ ᴘʟᴀʏᴇʀ ꜰᴇᴀᴛᴜʀᴇꜱ.\n\n✨ ꜰᴇᴀᴛᴜʀᴇꜱ ⚡️\n◆ ʙᴏᴛ ғᴏʀ ᴛᴇʟᴇɢʀᴀᴍ ɢʀᴏᴜᴘs.\n◆ Sᴜᴘᴇʀғᴀsᴛ ʟᴀɢ Fʀᴇᴇ ᴘʟᴀʏᴇʀ.\n◆ ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ ᴍᴜꜱɪᴄ + ᴠɪᴅᴇᴏ.\n◆ ʟɪᴠᴇ ꜱᴛʀᴇᴀᴍɪɴɢ.\n◆ ɴᴏ ᴘʀᴏᴍᴏ.\n◆ ʙᴇꜱᴛ ꜱᴏᴜɴᴅ Qᴜᴀʟɪᴛʏ.\n◆ 24×7 ʏᴏᴜ ᴄᴀɴ ᴘʟᴀʏ ᴍᴜꜱɪᴄ.\n◆ ᴀᴅᴅ ᴛʜɪꜱ ʙᴏᴛ ɪɴ ʏᴏᴜʀ ɢʀᴏᴜᴘ ᴀɴᴅ ᴍᴀᴋᴇ ɪᴛ ᴀᴅᴍɪɴ ᴀɴᴅ ᴇɴᴊᴏʏ ᴍᴜꜱɪᴄ 🎵.\n\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ◆ ꜱᴜᴘᴘᴏʀᴛɪɴɢ ᴘʟᴀᴛꜰᴏʀᴍꜱ : ʏᴏᴜᴛᴜʙᴇ, ꜱᴘᴏᴛɪꜰʏ,\n┠ ◆ ʀᴇꜱꜱᴏ, ᴀᴘᴘʟᴇᴍᴜꜱɪᴄ , ꜱᴏᴜɴᴅᴄʟᴏᴜᴅ ᴇᴛᴄ.\n┗━━━━━━━━━━━━━━━━━⧫\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ➥ Uᴘᴛɪᴍᴇ : {2}\n┠ ➥ SᴇʀᴠᴇʀSᴛᴏʀᴀɢᴇ : {3}\n┠ ➥ CPU Lᴏᴀᴅ : {4}\n┠ ➥ RAM Cᴏɴsᴜᴘᴛɪᴏɴ : {5}\n┠ ➥ ᴜꜱᴇʀꜱ : {6}\n┠ ➥ ᴄʜᴀᴛꜱ : {7}\n┗━━━━━━━━━━━━━━━━━⧫\n\n🫧 ᴅᴇᴠᴇʟᴏᴩᴇʀ 🪽 ➪ [ᴄᴇʀᴛɪғɪᴇᴅ ᴄᴏᴅᴇʀ ✔︎](https://t.me/CertifiedCoder)",
+    "Xin chào {0}, 🥀\n\n Mình là {1} !\n\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ◆ Hỗ trợ nền tảng : YouTube, Spotify,\n┠ ◆ Resso, AppleMusic, SoundCloud v.v.\n┗━━━━━━━━━━━━━━━━━⧫\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ➥ Thời gian hoạt động : {2}\n┠ ➥ Bộ nhớ máy chủ : {3}\n┠ ➥ Tải CPU : {4}\n┠ ➥ RAM sử dụng : {5}\n┠ ➥ Người dùng : {6}\n┠ ➥ Nhóm/Chat : {7}\n┗━━━━━━━━━━━━━━━━━⧫\n\n🫧 Nhà phát triển 🪽 ➪ [Còi ✔︎](https://t.me/COIHAYCOC)",
+    "Chào bạn, {0} ~\n\n◆ Mình là {1}, một bot phát trực tuyến trên Telegram với nhiều tính năng hữu ích.\n◆ Trình phát VC siêu nhanh.\n\n✨ Tính năng ⚡️\n◆ Bot dành cho nhóm Telegram.\n◆ Trình phát siêu nhanh, không lag.\n◆ Có thể phát nhạc + video.\n◆ Phát trực tiếp.\n◆ Không quảng cáo.\n◆ Chất lượng âm thanh tốt nhất.\n◆ Phát nhạc 24×7.\n◆ Thêm bot này vào nhóm của bạn, cấp quyền admin và thưởng thức âm nhạc 🎵.\n\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ◆ Hỗ trợ nền tảng : YouTube, Spotify,\n┠ ◆ Resso, AppleMusic, SoundCloud v.v.\n┗━━━━━━━━━━━━━━━━━⧫\n┏━━━━━━━━━━━━━━━━━⧫\n┠ ➥ Thời gian hoạt động : {2}\n┠ ➥ Bộ nhớ máy chủ : {3}\n┠ ➥ Tải CPU : {4}\n┠ ➥ RAM sử dụng : {5}\n┠ ➥ Người dùng : {6}\n┠ ➥ Nhóm/Chat : {7}\n┗━━━━━━━━━━━━━━━━━⧫\n\n🫧 Nhà phát triển 🪽 ➪ [Còi ✔︎](https://t.me/COIHAYCOC)",
 ]
 
 # ── Runtime structures ─────────────────────────────────────────────────────────
