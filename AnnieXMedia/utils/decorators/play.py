@@ -11,7 +11,7 @@ from pyrogram.errors import (
 )
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist
+from config import PLAYLIST_IMG_URL, SUPPORT_CHAT, adminlist, PRIVATE_BOT_MODE, LOGGER_ID
 from strings import get_string
 from AnnieXMedia import YouTube, app
 from AnnieXMedia.misc import SUDOERS
@@ -23,6 +23,7 @@ from AnnieXMedia.utils.database import (
     get_playtype,
     is_active_chat,
     is_maintenance,
+    is_served_private_chat,
 )
 from AnnieXMedia.utils.inline import botplaylist_markup
 
@@ -54,6 +55,12 @@ def PlayWrapper(command):
                     text=f"{app.mention} ɪs ᴜɴᴅᴇʀ ᴍᴀɪɴᴛᴇɴᴀɴᴄᴇ, ᴠɪsɪᴛ <a href={SUPPORT_CHAT}>sᴜᴘᴘᴏʀᴛ ᴄʜᴀᴛ</a> ғᴏʀ ᴋɴᴏᴡɪɴɢ ᴛʜᴇ ʀᴇᴀsᴏɴ.",
                     disable_web_page_preview=True,
                 )
+        if PRIVATE_BOT_MODE:
+            if (message.chat.id != LOGGER_ID and not await is_served_private_chat(message.chat.id)):
+                await message.reply_text(
+                    "**BOT NHẠC TRẢ PHÍ**\n\nChỉ Dành Cho Các Cuộc Trò Chuyện Đã Được Chủ Sở Hữu Cho Phép — Hãy Liên Hệ Chủ Sở Hữu Để Được Phép Dùng Bot Trong Nhóm Của Bạn."
+                )
+                return await app.leave_chat(message.chat.id)
 
         try:
             await message.delete()
