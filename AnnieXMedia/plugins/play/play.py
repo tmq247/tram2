@@ -40,7 +40,7 @@ from AnnieXMedia.utils.stream.stream import stream
             "vplayforce",
             "cplayforce",
             "cvplayforce",
-        ]
+        ], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]
     )
     & filters.group
     & ~BANNED_USERS
