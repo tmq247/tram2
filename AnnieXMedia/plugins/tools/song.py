@@ -10,16 +10,16 @@ from pyrogram.types import (
     Message,
 )
 
-from AnnieXMedia import app, YouTube
+from HasiiMusic import app, YouTube
 from config import (
     BANNED_USERS,
     SONG_DOWNLOAD_DURATION,
     SONG_DOWNLOAD_DURATION_LIMIT,
 )
-from AnnieXMedia.utils.decorators.language import language, languageCB
-from AnnieXMedia.utils.errors import capture_err, capture_callback_err
-from AnnieXMedia.utils.formatters import convert_bytes, time_to_seconds
-from AnnieXMedia.utils.inline.song import song_markup
+from HasiiMusic.utils.decorators.language import language, languageCB
+from HasiiMusic.utils.errors import capture_err, capture_callback_err
+from HasiiMusic.utils.formatters import convert_bytes, time_to_seconds
+from HasiiMusic.utils.inline.song import song_markup
 
 SONG_COMMAND = ["song"]
 
